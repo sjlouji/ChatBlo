@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "428787689175",
+    "firebase_url": "https://blochat-f1823.firebaseio.com",
+    "project_id": "blochat-f1823",
+    "storage_bucket": "blochat-f1823.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428787689175:android:b217ffe3735a16a3",
+        "android_client_info": {
+          "package_name": "com.social.joanlouji.chatblo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428787689175-581s3h8jh06a19bv7k3s9v2o71919co0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgW6hN2T8X2Ff75lSIntPxYlhP_vYqpfg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

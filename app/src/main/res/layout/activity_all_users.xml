@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AllUsersActivity">
+
+    <include layout="@layout/app_bar_layout"
+        android:id="@+id/alluserstoolbar"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="376dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/alluserstoolbar"
+        android:layout_marginStart="8dp"
+        android:id="@+id/userlist"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="59dp" />
+</RelativeLayout>
