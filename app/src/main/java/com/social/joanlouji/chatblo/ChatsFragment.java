@@ -231,6 +231,7 @@ public class ChatsFragment extends android.support.v4.app.Fragment {
 
             if(!isSeen){
                 userStatusView.setTypeface(userStatusView.getTypeface(), Typeface.BOLD);
+
             } else {
                 userStatusView.setTypeface(userStatusView.getTypeface(), Typeface.NORMAL);
             }

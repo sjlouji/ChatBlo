@@ -36,15 +36,15 @@
         android:layout_marginTop="10dp"
         android:text="User default Status" />
 
-    <ImageView
-        android:id="@+id/user_single_online_icon"
-        android:layout_width="8dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/user_single_name"
-        android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@+id/user_single_name"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/online_icon" />
+        <ImageView
+            android:id="@+id/user_single_online_icon"
+            android:layout_width="11dp"
+            android:layout_height="21dp"
+            android:layout_alignTop="@+id/user_single_name"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/user_single_name"
+            android:visibility="invisible"
+           />
     </RelativeLayout>
 
 </RelativeLayout>
