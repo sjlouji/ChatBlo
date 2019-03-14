@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,17 +34,20 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         this.mMessageList = mMessageList;
 
     }
-
+    View v;
+    Messages c;
     @Override
     public MessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext())
+         v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.message_single_layout ,parent, false);
 
         return new MessageViewHolder(v);
 
     }
-
+    String from_user;
+    String message_type;
+    String userid=FirebaseAuth.getInstance().getUid();
     public class MessageViewHolder extends RecyclerView.ViewHolder {
 
         public TextView messageText;
@@ -65,11 +69,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @Override
     public void onBindViewHolder(final MessageViewHolder viewHolder, int i) {
 
-        Messages c = mMessageList.get(i);
+         c = mMessageList.get(i);
 
-        String from_user = c.getFrom();
-        String message_type = c.getType();
-
+       from_user = c.getFrom();
+         message_type = c.getType();
 
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(from_user);
 
@@ -104,7 +107,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             viewHolder.messageText.setVisibility(View.INVISIBLE);
             Picasso.with(viewHolder.profileImage.getContext()).load(c.getMessage())
                     .placeholder(R.drawable.default_avatar).into(viewHolder.messageImage);
-
         }
 
     }

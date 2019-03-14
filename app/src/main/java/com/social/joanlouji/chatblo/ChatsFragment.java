@@ -2,10 +2,13 @@ package com.social.joanlouji.chatblo;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,8 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -83,7 +91,7 @@ public class ChatsFragment extends android.support.v4.app.Fragment {
 
         Query conversationQuery = mConvDatabase.orderByChild("timestamp");
 
-        FirebaseRecyclerAdapter<Conv, ConvViewHolder> firebaseConvAdapter = new FirebaseRecyclerAdapter<Conv, ConvViewHolder>(
+        final FirebaseRecyclerAdapter<Conv, ConvViewHolder> firebaseConvAdapter = new FirebaseRecyclerAdapter<Conv, ConvViewHolder>(
                 Conv.class,
                 R.layout.users_single_layout,
                 ConvViewHolder.class,
@@ -145,7 +153,36 @@ public class ChatsFragment extends android.support.v4.app.Fragment {
 
                         convViewHolder.setName(userName);
                         convViewHolder.setUserImage(userThumb, getContext());
+                        convViewHolder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View view) {
+                                CharSequence options[] = new CharSequence[]{"View Profile","Delete Conversation"};
 
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+                                builder.setItems(options, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        //Click Event for each item.
+                                        if(i == 0){
+
+                                            Intent profileIntent = new Intent(getContext(), ProfileActivity.class);
+                                            profileIntent.putExtra("user_id", list_user_id);
+                                            startActivity(profileIntent);
+
+                                        }
+                                        if(i==1){
+                                            mConvDatabase.child(list_user_id).removeValue();
+                                        }
+
+                                    }
+                                });
+
+                                builder.show();
+                                return true;
+                            }
+                        });
                         convViewHolder.mView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -158,6 +195,7 @@ public class ChatsFragment extends android.support.v4.app.Fragment {
 
                             }
                         });
+
 
 
                     }
